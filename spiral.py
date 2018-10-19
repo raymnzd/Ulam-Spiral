@@ -10,17 +10,14 @@ pygame.init()
 class Spiral():
 
     def __init__(self):
-        
         self.size = int(input("Enter size of Ulam Spiral: "))
         screen = pygame.display.set_mode((700, 700))
         pygame.display.set_caption('Ulam Spiral')
         os.environ['SDL_VIDEO_CENTERED'] = '1'
     
         self.ns = self.get_primes(self.size)
-
         self.coords = []
         self.get_numbers()
-
 
         running = True
         while running:
@@ -39,26 +36,17 @@ class Spiral():
 
     def get_numbers(self):
         x = y = 700 / 2 - 10
-
-
-
         dirs = itertools.cycle(['right','up','left','down'])
         d = next(dirs)
-        dones = []
-
         times = 1
         j = 0
         temp = 0
 
         for i in range(self.size ** 2 + 1):
-
             if i < temp:
                 continue
-
             for k in range(2):
-
                 for l in range(times):
-
                     if temp in self.ns:
                         color = (255,0,255)
                     elif temp == 0:
@@ -79,20 +67,14 @@ class Spiral():
                 d = next(dirs)
             times += 1
 
-
-
-
-
     def blit_text(self, message, size, color):
         my_font = pygame.font.SysFont("kalinga", size)
         my_message = my_font.render(message, 0, color)
 
         return my_message
 
-
     def get_primes(self, n):
         return sieve.sieve(self.size ** 2)
-
 
 def main():
     s = Spiral()
